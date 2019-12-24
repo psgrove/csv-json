@@ -9,6 +9,7 @@ public class CsvConverter {
 
     private final File file;
     String fileName;
+    String outFileName = "output.json";
 
     public static void main(String[] args) throws IOException {
        new CsvConverter(null, "Book1.csv");
@@ -42,5 +43,8 @@ public class CsvConverter {
         ObjectMapper mapper = new ObjectMapper();
         String jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
         System.out.println(jsonResult);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outFileName));
+        writer.write(jsonResult);
+        writer.close();
     }
 }
